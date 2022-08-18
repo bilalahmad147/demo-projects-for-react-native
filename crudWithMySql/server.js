@@ -25,7 +25,13 @@ con.connect(function (error) {
   else console.log('connected');
 });
 
-app.get('/user', function (req, res) {
+app.get('/', function (req, res) {
+  const sqlInsert =
+    "INSERT INTO users (id, name, email, degree) VALUES (6, 'zubi', 'zubi@gmail.com', 'BS chemical engineering')";
+  con.query(sqlInsert, (error, result) => {
+    console.log("error", error);
+    console.log("result", result);
+  })
   con.query('select * from users', function (error, rows, fields) {
     if (error) console.log(error);
     else {
