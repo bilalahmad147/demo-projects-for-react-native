@@ -22,6 +22,8 @@ const App = () => {
         return (
           <View key={item.id}>
             <Text>{index + 1} -- {item.name}</Text>
+            <Text>{index + 1} -- {item.email}</Text>
+            <Text>{index + 1} -- {item.username}</Text>
           </View>
         );
       })}
