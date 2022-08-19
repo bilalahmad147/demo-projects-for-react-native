@@ -30,6 +30,15 @@ app.get('/api/get', function (req, res) {
   });
 });
 
+app.get('/api/post', function (req, res) {
+  const postData = 'INSERT INTO contact_db (name,email,contact) VALUES (?,?,?)';
+  db.query(getSql,[name,email,contact], (error, result) => {
+    console.log('error =>', error);
+    console.log('result =>', result);
+    res.send(result);
+  });
+});
+
 app.get('/', function (req, res) {
   // const sqlInsert =
   //   "INSERT INTO contact_db (name,email,contact) VALUES ('awan', 'awan@gmail.com', 00114562233)";
