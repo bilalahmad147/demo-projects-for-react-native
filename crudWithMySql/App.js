@@ -1,48 +1,78 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState();
 
-  const fetchData = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    const result = await response.json();
-    setData(result);
-  };
-  console.log(data);
+  // const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetchData().catch(err => console.log(err));
-  }, []);
+  // const fetchData = async () => {
+  //   const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  //   const result = await response.json();
+  //   setData(result);
+  // };
+  // console.log(data);
+
+  // useEffect(() => {
+  //   fetchData().catch(err => console.log(err));
+  // }, []);
 
   return (
-    <View>
-      <Text style={styles.mainHeading}>Students Details</Text>
-      {data.map((item, index) => {
-        return (
-          <View key={item.id}>
-            <Text>{index + 1} -- {item.name}</Text>
-            <Text>{index + 1} -- {item.email}</Text>
-            <Text>{index + 1} -- {item.username}</Text>
-          </View>
-        );
-      })}
-    </View>
+    <ScrollView>
+      <View>
+        <Text style={styles.mainHeading}>Employ Details</Text>
+      </View>
+      <View style={styles.formInput}>
+        <TextInput
+        style={styles.inputStyle}
+          placeholder="Enter name.."
+          onChangeText={newText => setName(newText)}
+        />
+        <TextInput
+        style={styles.inputStyle}
+          placeholder="Enter email.."
+          onChangeText={newText => setEmail(newText)}
+        />
+        <TextInput
+        style={styles.inputStyle}
+          placeholder="Enter contact.."
+          onChangeText={newText => setContact(newText)}
+        />
+        <Button title='save'>Save</Button>
+      </View>
+      <View>
+        <Button title='show'>Show Details</Button>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
   mainHeading: {
     fontSize: 20,
     textAlign: 'center',
-    marginTop: 20,
+    margin: 20,
+    padding: 20,
+    backgroundColor: 'black',
+    color: 'white',
+    borderRadius: 15,
   },
+  formInput: {
+    alignContent: 'center',
+    padding: 10,
+  },
+  inputStyle: {
+    margin: 10,
+  }
 });
 
 export default App;

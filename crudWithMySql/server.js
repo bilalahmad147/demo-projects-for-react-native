@@ -21,12 +21,21 @@ var server = app.listen(5000, function () {
   console.log('start');
 });
 
-app.get('/', function (req, res) {
-  const sqlInsert =
-    "INSERT INTO contact_db (name,email,contact) VALUES ('ahmad', 'ahmad@gmail.com', 00112233)";
-  db.query(sqlInsert, (error, result) => {
+app.get('/api/get', function (req, res) {
+  const getSql = 'SELECT * FROM contact_db';
+  db.query(getSql, (error, result) => {
     console.log('error =>', error);
     console.log('result =>', result);
+    res.send(result);
   });
-  res.send('hello express from server file');
+});
+
+app.get('/', function (req, res) {
+  // const sqlInsert =
+  //   "INSERT INTO contact_db (name,email,contact) VALUES ('awan', 'awan@gmail.com', 00114562233)";
+  // db.query(sqlInsert, (error, result) => {
+  //   console.log('error =>', error);
+  //   console.log('result =>', result);
+  // });
+  // res.send('hello express');
 });
