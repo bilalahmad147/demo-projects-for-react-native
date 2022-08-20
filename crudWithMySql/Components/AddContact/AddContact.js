@@ -7,18 +7,25 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import axios from 'axios';
 
 function AddContact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [contact, setContact] = useState('');
 
-  const saveDetails = e => {
+  const saveDetails = async (e) => {
     e.preventDefault();
     if (!name || !email || !contact) {
       alert('Please enter values');
     } else {
-      alert('values added');
+      axios
+        .post('http://192.168.18.18:5000/api/post', {
+          name:name,
+          email:email,
+          contact:contact,
+        })
+        .then(response => console.log(response.data))
     }
     setName(''),
       setEmail(''),
@@ -60,7 +67,7 @@ function AddContact() {
       </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   mainHeading: {

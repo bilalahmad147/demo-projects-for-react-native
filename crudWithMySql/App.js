@@ -9,7 +9,10 @@ const App = () => {
       <View>
         <Text style={styles.mainHeading}>Employs List</Text>
       </View>
-      <Home />
+      <View>
+        <AddContact />
+        <Home />
+      </View>
     </ScrollView>
   );
 };

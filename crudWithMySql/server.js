@@ -24,20 +24,18 @@ var server = app.listen(5000, function () {
 app.get('/api/get', function (req, res) {
   const getSql = 'SELECT * FROM contact_db';
   db.query(getSql, (error, result) => {
-    console.log('error =>', error);
-    console.log('result =>', result);
     res.send(result);
   });
 });
 
-// app.get('/api/post', function (req, res) {
-//   const {name, email, contact} = req.body;
-//   const postData = 'INSERT INTO contact_db (name,email,contact) VALUES (?,?,?)';
-//   db.query(postData, [name, email, contact], (error, result) => {
-//     console.log('error =>', error);
-//     console.log('result =>', result);
-//   });
-// });
+app.get('/api/post', function (req, res) {
+  const {name, email, contact} = req.body;
+  const postData = 'INSERT INTO contact_db (name,email,contact) VALUES (?,?,?)';
+  db.query(postData, [{name, email, contact}], (error, result) => {
+    console.log('error =>', error);
+    console.log('result =>', result);
+  });
+});
 
 app.get('/', function (req, res) {
   // const sqlInsert =

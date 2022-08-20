@@ -1,44 +1,50 @@
 import React, {useState, useEffect} from 'react';
 import {
+  Button,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
+import axios from 'axios';
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const fetchData = async () => {
-    const response = await fetch('http://192.168.18.83:5000/api/get');
-    const result = await response.json();
-    return setData(result);
+  const fetchData = () => {
+    axios.get('http://192.168.18.18:5000/api/get').then(response => {
+      setData(response.data);
+    });
   };
-  console.log(data);
-  console.log(data[0]);
-  console.log(data[1]);
   useEffect(() => {
-    fetchData().catch(err => console.log(err));
+    fetchData();
   }, []);
 
-
   const list = () => {
-    return data.map((element) => {
+    return data.map(element => {
       return (
         <View key={element.id} style={{margin: 10}}>
-          <Text>{element.id}-   Name:  {element.name}</Text>
-          <Text>Email:{element.email}   Contact:{element.contact}</Text>
+          <Text>
+            {element.id}- Name: {element.name}
+          </Text>
+          <Text>
+            Email:{element.email} Contact:{element.contact}
+          </Text>
+          <View style={styles.fixToText}>
+            <Button
+              title="Edit"
+              onPress={() => Alert.alert('Left button pressed')}
+            />
+            <Button
+              title="Details"
+              onPress={() => Alert.alert('Right button pressed')}
+            />
+          </View>
         </View>
       );
     });
   };
 
-  return (
-    <ScrollView>
-      {list()}
-    </ScrollView>
-  );
+  return <ScrollView>{list()}</ScrollView>;
 };
 
 const styles = StyleSheet.create({
@@ -50,6 +56,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     color: 'white',
     borderRadius: 15,
+  },
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
 
