@@ -28,10 +28,10 @@ app.get('/api/get', function (req, res) {
   });
 });
 
-app.get('/api/post', function (req, res) {
+app.post('/api/post', function (req, res) {
   const {name, email, contact} = req.body;
   const postData = 'INSERT INTO contact_db (name,email,contact) VALUES (?,?,?)';
-  db.query(postData, [{name, email, contact}], (error, result) => {
+  db.query(postData, [name, email, contact], (error, result) => {
     console.log('error =>', error);
     console.log('result =>', result);
   });
@@ -44,5 +44,5 @@ app.get('/', function (req, res) {
   //   console.log('error =>', error);
   //   console.log('result =>', result);
   // });
-  // res.send('hello express');
+  res.send('hello express');
 });

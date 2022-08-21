@@ -9,28 +9,20 @@ import {
 } from 'react-native';
 import axios from 'axios';
 
-function AddContact() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [contact, setContact] = useState('');
+let AddContact = () => {
+  const [name, setNewName] = useState('');
+  const [email, setNewEmail] = useState('');
+  const [contact, setNewContact] = useState('');
 
-  const saveDetails = async (e) => {
+  const saveDetails = async e => {
     e.preventDefault();
     if (!name || !email || !contact) {
       alert('Please enter values');
     } else {
       axios
-        .post('http://192.168.18.18:5000/api/post', {
-          name:name,
-          email:email,
-          contact:contact,
-        })
-        .then(response => console.log(response.data))
+        .post('http://192.168.18.18:5000/api/post', {name, email, contact})
+        .then(response => console.log(response.data));
     }
-    setName(''),
-      setEmail(''),
-      setContact(''),
-      console.log('details saved', name, email, contact);
   };
 
   return (
@@ -42,21 +34,19 @@ function AddContact() {
         <TextInput
           style={styles.inputStyle}
           placeholder="Enter name.."
-          value={name}
-          onChangeText={newText => setName(newText)}
+          onChangeText={text => setNewName(text)}
           defaultValue={name}
         />
         <TextInput
           style={styles.inputStyle}
           placeholder="Enter email.."
-          value={email}
-          onChangeText={newText => setEmail(newText)}
+          onChangeText={text => setNewEmail(text)}
           defaultValue={email}
         />
         <TextInput
           style={styles.inputStyle}
           placeholder="Enter contact.."
-          onChangeText={newText => setContact(newText)}
+          onChangeText={text => setNewContact(text)}
           defaultValue={contact}
         />
       </View>
@@ -67,7 +57,7 @@ function AddContact() {
       </View>
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   mainHeading: {
