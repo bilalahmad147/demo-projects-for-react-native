@@ -1,17 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Button, ScrollView, StyleSheet, Text, View} from 'react-native';
 import axios from 'axios';
 
 const Home = () => {
   const [data, setData] = useState([]);
   const fetchData = () => {
-    axios.get('http://192.168.18.18:5000/api/get').then(response => {
+    axios.get('http://192.168.18.83/api/get').then(response => {
       setData(response.data);
     });
   };
@@ -31,7 +25,7 @@ const Home = () => {
           </Text>
           <View style={styles.fixToText}>
             <Button
-              title="Edit"
+              title="Delete"
               onPress={() => Alert.alert('Left button pressed')}
             />
             <Button

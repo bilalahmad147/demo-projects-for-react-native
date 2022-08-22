@@ -10,7 +10,7 @@ const App = () => {
         <Text style={styles.mainHeading}>Employs List</Text>
       </View>
       <View>
-        <AddContact />
+        {/* <AddContact /> */}
         <Home />
       </View>
     </ScrollView>

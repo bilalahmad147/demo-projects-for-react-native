@@ -20,15 +20,15 @@ let AddContact = () => {
       alert('Please enter values');
     } else {
       axios
-        .post('http://192.168.18.18:5000/api/post', {name, email, contact})
-        .then(response => console.log(response.data));
+        .post('http://192.168.18.83:5000/api/post', {name, email, contact})
+        .then(setNewName(''), setNewEmail(''), setNewContact(''));
     }
   };
 
   return (
     <ScrollView>
       <View>
-        <Text style={styles.mainHeading}>add contact Details</Text>
+        <Text style={styles.mainHeading}>Add contact Details</Text>
       </View>
       <View style={styles.formInput}>
         <TextInput

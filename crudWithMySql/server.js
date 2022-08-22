@@ -25,6 +25,7 @@ app.get('/api/get', function (req, res) {
   const getSql = 'SELECT * FROM contact_db';
   db.query(getSql, (error, result) => {
     res.send(result);
+    console.log(result);
   });
 });
 
@@ -37,6 +38,15 @@ app.post('/api/post', function (req, res) {
   });
 });
 
+// app.delete('/api/remove/:id', function (req, res) {
+//   const {id} = req.params;
+//   const removeData = 'DELETE FROM contact_db WHERE id = ?';
+//   db.query(removeData, id, (error, result) => {
+//     console.log('error =>', error);
+//     console.log('result =>', result);
+//   });
+// });
+
 app.get('/', function (req, res) {
   // const sqlInsert =
   //   "INSERT INTO contact_db (name,email,contact) VALUES ('awan', 'awan@gmail.com', 00114562233)";
@@ -44,5 +54,5 @@ app.get('/', function (req, res) {
   //   console.log('error =>', error);
   //   console.log('result =>', result);
   // });
-  res.send('hello express');
+  // res.send('hello express');
 });
