@@ -19,6 +19,8 @@ target 'squarePayment' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'RNSquareInAppPayments', :path => '../node_modules/react-native-square-in-app-payments'
+
   target 'squarePaymentTests' do
     inherit! :complete
     # Pods for testing
