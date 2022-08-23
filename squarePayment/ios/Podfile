@@ -21,6 +21,8 @@ target 'squarePayment' do
 
   pod 'RNSquareInAppPayments', :path => '../node_modules/react-native-square-in-app-payments'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'squarePaymentTests' do
     inherit! :complete
     # Pods for testing
