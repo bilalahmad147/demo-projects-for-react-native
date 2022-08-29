@@ -2,3 +2,9 @@
   "name": "admobApp",
   "displayName": "admobApp"
 }
+
+{
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-1685008768084758~7809682306"
+  }
+}
