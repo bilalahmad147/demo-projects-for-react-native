@@ -1,7 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import mobileAds from 'react-native-google-mobile-ads';
+import mobileAds, {InterstitialAd} from 'react-native-google-mobile-ads';
 import Banner from './components/banner/Banner';
+import InterstitialAdsScreen from './components/interstitial/InterstitialAdsScreen';
 
 mobileAds()
   .initialize()
@@ -16,7 +17,7 @@ const App = () => {
         <Text>Hello World!!!</Text>
       </View>
       <View>
-        <Banner />
+        <InterstitialAdsScreen />
       </View>
     </View>
   );
