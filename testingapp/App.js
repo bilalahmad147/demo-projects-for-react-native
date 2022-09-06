@@ -1,24 +1,36 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
+import TaskItem from './src/Components/TaskItem';
+import TextInputField from './src/Components/TextInputField';
 
 const App = () => {
-  let names = ['bilal', 'zubair', 'talha', 'ali', 'bil'];
-  let shortListed = [];
-  let rejected = [];
-  for (let value of names) {
-    if (value.length > 4) {
-      shortListed.push(value);
-    } else {
-      rejected.push(value);
-    }
-  }
+  const [tasks, setTasks] = useState(['bilal', 'zubair']);
 
-  console.log(shortListed);
-  console.log(rejected);
+  const addTask = task => {
+    setTasks([...tasks, task]);
+  };
+
+  const deleteTask = deleteIndex => {
+    setTasks(tasks.filter((value, index) => index != deleteIndex));
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TODO LIST</Text>
+      <ScrollView style={styles.scrollView}>
+        {tasks.map((task, index) => {
+          return (
+            <View key={index} style={styles.taskContainer}>
+              <TaskItem
+                index={index + 1}
+                task={task}
+                deleteTask={() => deleteTask(index)}
+              />
+            </View>
+          );
+        })}
+      </ScrollView>
+      <TextInputField addTask={addTask} />
     </View>
   );
 };
@@ -26,14 +38,21 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#5f669c',
+    backgroundColor: '#1E1A3C',
   },
   heading: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: '600',
     marginTop: 30,
-    textAlign: 'center',
+    marginBottom: 10,
+    marginLeft: 20,
+  },
+  scrollView: {
+    marginBottom: 70,
+  },
+  taskContainer: {
+    marginTop: 20,
   },
 });
 
