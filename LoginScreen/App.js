@@ -1,13 +1,13 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import Metamask from './src/Components/Metamask';
+import FacebookLogin from './src/Components/FacebookLogin';
 
 const App = () => {
   return (
     <ScrollView>
       <View style={styles.sectionContainer}>
         <Text>hello world</Text>
-        <Metamask />
+        <FacebookLogin />
       </View>
     </ScrollView>
   );
